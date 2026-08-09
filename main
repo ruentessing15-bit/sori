@@ -1,0 +1,93 @@
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+WindUI:SetNotificationLower(true)
+
+local Window = WindUI:CreateWindow({
+    Title = "🍊 sori hub",
+    Icon = "star",
+    Author = "by sori hub",
+    Folder = "SoriHub_Config",
+    Size = UDim2.fromOffset(580, 460),
+    Transparent = true,
+    Theme = "Dark",
+})
+
+Window:Tag({
+    Title = "v1.0 Delta",
+    Color = Color3.fromHex("#30ff6a")
+})
+
+-- สร้าง Tab
+local MainTab = Window:Tab({
+    Title = "Main",
+    Icon = "house",
+})
+
+local SettingsTab = Window:Tab({
+    Title = "Settings",
+    Icon = "settings",
+})
+
+-- สร้าง Section
+local MainSection = MainTab:Section({
+    Title = "เมนูหลัก",
+    Opened = true
+})
+
+MainSection:Button({
+    Title = "สวัสดีครับ",
+    Desc = "ปุ่มทดสอบ",
+    Callback = function()
+        WindUI:Notify({
+            Title = "WindUI",
+            Content = "รันบน Delta สำเร็จแล้ว!",
+            Duration = 3,
+            Icon = "check",
+        })
+    end
+})
+
+MainSection:Toggle({
+    Title = "เปิด/ปิด ฟังก์ชั่น",
+    Desc = "ตัวอย่าง Toggle",
+    Default = false,
+    Callback = function(state)
+        print("Toggle:", state)
+    end
+})
+
+MainSection:Slider({
+    Title = "ความเร็ว",
+    Step = 1,
+    Value = {
+        Min = 0,
+        Max = 100,
+        Default = 16,
+    },
+    Callback = function(val)
+        print("Slider:", val)
+    end
+})
+
+MainSection:Dropdown({
+    Title = "เลือกโหมด",
+    Values = {"Mode 1", "Mode 2", "Mode 3"},
+    Value = "Mode 1",
+    Callback = function(selected)
+        print("เลือก:", selected)
+    end
+})
+
+SettingsTab:Section({
+    Title = "ตั้งค่า UI"
+}):Button({
+    Title = "Destroy UI",
+    Callback = function()
+        Window:Destroy()
+    end
+})
+
+WindUI:Notify({
+    Title = "Loaded!",
+    Content = "WindUI พร้อมใช้งานบน Delta แล้ว",
+    Duration = 4
+})
